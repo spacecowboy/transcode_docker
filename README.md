@@ -1,6 +1,6 @@
 # Video Transcoding Docker Container
 
-This Docker container wraps [Lisa Melton's video_transcoding](https://github.com/lisamelton/video_transcoding) Ruby scripts for easy use without having to install dependencies directly on your system.
+This Docker container wraps [Lisa Melton's video_transcoding](https://github.com/lisamelton/video_transcoding) Ruby scripts for easy use without having to install dependencies directly on your system. The container automatically fetches the latest version of the scripts during build time.
 
 ## Building the Container
 
