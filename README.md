@@ -49,6 +49,14 @@ docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/tr
   --mode hevc /mnt/media/video.mkv
 ```
 
+### Including Only Specific Languages
+
+```bash
+docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker \
+  --mode h264 --add-audio eng --add-audio swe --add-subtitle eng --add-subtitle swe /mnt/media/video.mkv
+```
+
+
 ### Including All Audio and Subtitle Tracks
 
 ```bash
