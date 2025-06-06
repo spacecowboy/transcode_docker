@@ -21,7 +21,7 @@ docker build --build-arg UID=$(id -u) --build-arg GID=$(id -g) -t transcode-vide
 The container uses `transcode-video.rb` as its entrypoint, so you can pass arguments directly to `docker run`. Output files will be written to `/output` in the container by default.
 
 ```bash
-docker run -v /path/to/your/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker:main [OPTIONS] /mnt/media/video.mkv
+docker run -v /path/to/your/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker [OPTIONS] /mnt/media/video.mkv
 ```
 
 ## Mount Points and Volume Mapping
@@ -38,21 +38,21 @@ The container requires two important volume mounts:
 `h264` is the default mode.
 
 ```bash
-docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker:main \
+docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker \
   --mode h264 /mnt/media/video.mkv
 ```
 
 ### H.265/HEVC Encoding
 
 ```bash
-docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker:main \
+docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker \
   --mode hevc /mnt/media/video.mkv
 ```
 
 ### Including All Audio and Subtitle Tracks
 
 ```bash
-docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker:main \
+docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker \
   --mode h264 --add-audio all --add-subtitle all /mnt/media/video.mkv
 ```
 
@@ -61,14 +61,14 @@ docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/tr
 
 ```bash
 docker run -v /path/to/media:/mnt/media -v $(pwd):/output --entrypoint /app/detect-crop.rb \
-  ghcr.io/spacecowboy/transcode_docker:main /mnt/media/video.mkv
+  ghcr.io/spacecowboy/transcode_docker /mnt/media/video.mkv
 ```
 
 ### Using convert-video.rb
 
 ```bash
 docker run -v /path/to/media:/mnt/media -v $(pwd):/output --entrypoint /app/convert-video.rb \
-  ghcr.io/spacecowboy/transcode_docker:main /mnt/media/video.mp4
+  ghcr.io/spacecowboy/transcode_docker /mnt/media/video.mp4
 ```
 
 ## File Permissions
