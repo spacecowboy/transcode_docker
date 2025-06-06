@@ -39,7 +39,7 @@ The container requires two important volume mounts:
 
 ```bash
 docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker \
-  --mode h264 /mnt/media/video.mkv
+  /mnt/media/video.mkv
 ```
 
 ### H.265/HEVC Encoding
@@ -53,7 +53,7 @@ docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/tr
 
 ```bash
 docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker \
-  --mode h264 --add-audio eng --add-audio swe --add-subtitle eng --add-subtitle swe /mnt/media/video.mkv
+  --add-audio eng --add-audio swe --add-subtitle eng --add-subtitle swe /mnt/media/video.mkv
 ```
 
 
@@ -61,7 +61,7 @@ docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/tr
 
 ```bash
 docker run -v /path/to/media:/mnt/media -v $(pwd):/output ghcr.io/spacecowboy/transcode_docker \
-  --mode h264 --add-audio all --add-subtitle all /mnt/media/video.mkv
+  --add-audio all --add-subtitle all /mnt/media/video.mkv
 ```
 
 
