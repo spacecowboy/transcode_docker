@@ -1,0 +1,36 @@
+#!/bin/bash -eu
+
+# Example usage:
+#
+# transcode-docker [OPTIONS] /mnt/media/video.mkv
+
+# This is a wrapper script to run the Docker container.
+# It runs as the current user.
+# The current directory is mounted as /output.
+# The last argument is assumed to be the input file. The folder of the input file is mounted as a volume
+# with the same path inside the container.
+
+if [ $# -lt 1 ]; then
+  echo "Usage: $0 [OPTIONS] /path/to/input/file"
+  echo "Example: $0 --mode x264 /mnt/media/video.mkv"
+  exit 1
+fi
+
+LAST_ARG_INDEX="$#"
+INPUT_FILE="${!LAST_ARG_INDEX}"
+
+# Ensure input file is absolute
+if [[ "$INPUT_FILE" != /* ]]; then
+  echo "Error: Input file must be an absolute path. Got '$INPUT_FILE'."
+  exit 1
+fi
+
+IMAGE_NAME="ghcr.io/spacecowboy/transcode_docker"
+INPUT_DIR="$(dirname "$INPUT_FILE")"
+
+exec docker run --rm -it \
+	--user "$(id -u):$(id -g)" \
+  -v "$(pwd):/output" \
+  -v "$INPUT_DIR:$INPUT_DIR" \
+	"$IMAGE_NAME" \
+	"$@"

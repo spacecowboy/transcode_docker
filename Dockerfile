@@ -1,8 +1,5 @@
 FROM ubuntu:25.04
 
-ARG UID=1000
-ARG GID=1000
-
 # Update and install required packages
 RUN apt-get update && apt-get install -y \
     handbrake-cli \
@@ -23,9 +20,6 @@ RUN git clone --depth 1 https://github.com/lisamelton/video_transcoding.git /tmp
     && rm -rf /tmp/video_transcoding \
     && chmod +x /app/*.rb \
     && chown -R ${UID}:${GID} /output /app
-
-# Switch to non-root user specified by UID/GID
-USER ${UID}:${GID}
 
 # Set working directory to output directory
 WORKDIR /output
